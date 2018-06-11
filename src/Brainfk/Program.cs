@@ -18,13 +18,17 @@ namespace Brainfk {
 
             var interpreter = new Interpreter (tree);
 
-            var sw = new Stopwatch();
-            sw.Start();
+            var c = new Compiler.Frontend.Compiler (tree);
+            var exec = c.Compile ("InMemoryAssembly");
 
-            interpreter.Run ();
-            sw.Stop();
+            var sw = new Stopwatch ();
+            sw.Start ();
 
-            Console.WriteLine($"Program interpreted in {sw.Elapsed}.");
+            exec ();
+            //interpreter.Run ();
+            sw.Stop ();
+
+            Console.WriteLine ($"Program interpreted in {sw.Elapsed}.");
         }
     }
 }

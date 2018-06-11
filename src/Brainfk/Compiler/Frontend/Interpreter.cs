@@ -5,7 +5,7 @@ using Brainfk.Compiler.Backend.Ast;
 
 namespace Brainfk.Compiler.Frontend {
     internal sealed class Interpreter {
-        private List<byte> _memory = new byte[128].ToList();
+        private List<char> _memory = new char[512].ToList();
         private readonly BlockStatement _program;
 
         private int _p;
@@ -32,12 +32,12 @@ namespace Brainfk.Compiler.Frontend {
                     break;
                 case CharacterInStatement cis:
                     {
-                        _memory[_p] = (byte) Console.ReadKey ().KeyChar;
+                        _memory[_p] =  Console.ReadKey ().KeyChar;
                         break;
                     }
                 case CharacterOutStatement _:
                     {
-                        Console.Write ((char) _memory[_p]);
+                        Console.Write ( _memory[_p]);
                         break;
                     }
                 case DecrementStatement _:
@@ -63,7 +63,7 @@ namespace Brainfk.Compiler.Frontend {
                     {
                         _p++;
                         while (_p >= _memory.Count) {
-                            _memory.Add (0);
+                            _memory.Add ((char)0);
                         }
                         break;
                     }

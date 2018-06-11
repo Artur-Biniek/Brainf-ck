@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Brainfk.Compiler.Backend.Ast;
 
 namespace Brainfk.Compiler.Frontend {
     internal sealed class Interpreter {
-        private List<byte> _memory = new List<byte> (128);
+        private List<byte> _memory = new byte[128].ToList();
         private readonly BlockStatement _program;
 
         private int _p;
@@ -12,7 +13,6 @@ namespace Brainfk.Compiler.Frontend {
 
         public Interpreter (BlockStatement program) {
             _program = program;
-            _memory.Add(0);
         }
 
         public void Run () {
